@@ -5,7 +5,7 @@ services:
       - '4566:4566'
       - '4510-4559:4510-4559'
     env_file:
-      - .env
+      - ../.env
     environment:
       DEBUG: ${DEBUG:-1}
       LS_LOG: WARN
@@ -15,7 +15,7 @@ services:
       AWS_DEFAULT_REGION: eu-west-2
       AWS_ACCESS_KEY_ID: test
       AWS_SECRET_ACCESS_KEY: test
-      EXTRA_CORS_ALLOWED_ORIGINS: "http://localhost:5173,http://127.0.0.1:5173"
+      EXTRA_CORS_ALLOWED_ORIGINS: "http://localhost:5173,http://127.0.0.1:5173,https://sfitz42.github.io"
       EXTRA_CORS_ALLOWED_HEADERS: 'X-Amzn-Query-Mode'
     volumes:
       - ./start-localstack.sh:/etc/localstack/init/ready.d/start-localstack.sh
