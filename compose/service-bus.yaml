@@ -6,11 +6,11 @@ services:
       - "./service-bus-config.json:/ServiceBus_Emulator/ConfigFiles/Config.json"
     ports:
       - "5672:5672"
+    env_file:
+      - ../.env
     environment:
       SQL_SERVER: sqledge  
       ACCEPT_EULA: ${ACCEPT_SB_EULA}
-    env_file:
-      - ../.env
     depends_on:
       - sqledge
     networks:
@@ -25,10 +25,10 @@ services:
       sb-emulator:
         aliases:
           - "sqledge"
-    environment:
-      ACCEPT_EULA: ${ACCEPT_SB_EULA}
     env_file:
       - ../.env
+    environment:
+      ACCEPT_EULA: ${ACCEPT_SB_EULA}
 
 networks:
   sb-emulator:

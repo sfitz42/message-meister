@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css'
 import { Footer } from './components/Footer/Footer'
 import { AwsMessageSender } from './forms/aws/Aws'
-import { ServiceBusMessageSender } from './forms/aws/service-bus/ServiceBus'
+import { ServiceBusMessageSender } from './forms/service-bus/ServiceBus'
 
 enum MessageBroker {
   AWS = "AWS SQS/SNS",
