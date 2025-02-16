@@ -1,0 +1,34 @@
+services:
+  service-bus-emulator:
+    container_name: "service-bus-emulator"
+    image: mcr.microsoft.com/azure-messaging/servicebus-emulator:latest
+    volumes:
+      - "./service-bus-config.json:/ServiceBus_Emulator/ConfigFiles/Config.json"
+    ports:
+      - "5672:5672"
+    environment:
+      SQL_SERVER: sqledge  
+      ACCEPT_EULA: ${ACCEPT_SB_EULA}
+    env_file:
+      - ../.env
+    depends_on:
+      - sqledge
+    networks:
+      sb-emulator:
+        aliases:
+          - "service-bus-emulator"
+
+  sqledge:
+    container_name: "sqledge"
+    image: "mcr.microsoft.com/azure-sql-edge:latest"
+    networks:
+      sb-emulator:
+        aliases:
+          - "sqledge"
+    environment:
+      ACCEPT_EULA: ${ACCEPT_SB_EULA}
+    env_file:
+      - ../.env
+
+networks:
+  sb-emulator:
