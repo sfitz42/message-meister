@@ -5,7 +5,7 @@ import './Footer.css'
 export function Footer() {
   return (
     <footer>
-      <a href="#"><FaGithub /></a>
+      <a href="https://github.com/sfitz42/message-meister"><FaGithub /></a>
     </footer>
   )
 }
