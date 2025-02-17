@@ -3,10 +3,10 @@ import React, { FormEvent } from 'react';
 import { TextInput } from '../../components/TextInput/TextInput';
 import { SendButton, SendStatus } from '../../components/SendButton/SendButton';
 
+import { sendSnsMessage, sendSqsMessage, awsProps } from '../../utils/aws';
 import { CodeInput } from '../../components/CodeInput/CodeInput';
-import { sendServiceBusMessage, ServiceBusProps } from '../../utils/service-bus';
 
-export function ServiceBusMessageSender() {
+export function AwsSender() {
   const [sending, setSending] = React.useState(SendStatus.Idle)
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -15,15 +15,25 @@ export function ServiceBusMessageSender() {
 
     const formData = new FormData(event.currentTarget)
 
-    const props: ServiceBusProps = {
-      connectionString: formData.get("serviceBusConnectionString") as string,
-      address: formData.get("serviceBusAddress") as string,
-      message: formData.get("message") as string
+    const resourceUrl = formData.get("resourceUrl") as string
+
+    const props: awsProps = {
+      endpoint: formData.get("localstackEndpoint") as string,
+      resourceUrl,
+      region: formData.get("region") as string,
+      accessKeyId: formData.get("accessKey") as string,
+      secretKey: formData.get("secretKey") as string,
+      message: formData.get("message") as string,
+      groupId: "default"
     }
 
-
     try {
-      await sendServiceBusMessage(props)
+      if (resourceUrl.includes("sqs")) {
+        await sendSqsMessage(props)
+      } else {
+        await sendSnsMessage(props)
+      }
+
       setSending(SendStatus.Sent)
     } catch (error) {
       console.error(error)
@@ -38,8 +48,11 @@ export function ServiceBusMessageSender() {
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="queue-inputs">
-        <TextInput label="Connection String" name="serviceBusConnectionString" />
-        <TextInput label="Queue / Topic Address" name="serviceBusAddress" />
+        <TextInput label="LocalStack Endpoint" name="localstackEndpoint" />
+        <TextInput label="Queue / Topic" name="resourceUrl" />
+        <TextInput label="Region" name="region" />
+        <TextInput label="Access Key ID" name="accessKey" />
+        <TextInput label="Secret Key" name="secretKey" />
         <CodeInput label="Message" name="message" />
 
         <SendButton sending={sending} />

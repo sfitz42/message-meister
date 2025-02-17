@@ -10,7 +10,6 @@ services:
       - ../.env
     environment:
       SQL_SERVER: sqledge  
-      ACCEPT_EULA: ${ACCEPT_SB_EULA}
     depends_on:
       - sqledge
     networks:
@@ -27,8 +26,6 @@ services:
           - "sqledge"
     env_file:
       - ../.env
-    environment:
-      ACCEPT_EULA: ${ACCEPT_SB_EULA}
 
 networks:
   sb-emulator:
