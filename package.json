@@ -11,12 +11,14 @@
   "dependencies": {
     "@aws-sdk/client-sns": "^3.749.0",
     "@aws-sdk/client-sqs": "^3.749.0",
+    "@azure/service-bus": "^7.9.5",
     "prismjs": "^1.29.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",
     "react-simple-code-editor": "^0.14.1",
-    "react-syntax-highlighter": "^15.6.1"
+    "react-syntax-highlighter": "^15.6.1",
+    "vite-plugin-node-polyfills": "^0.23.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

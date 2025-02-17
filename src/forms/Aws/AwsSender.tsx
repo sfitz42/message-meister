@@ -6,7 +6,7 @@ import { SendButton, SendStatus } from '../../components/SendButton/SendButton';
 import { sendSnsMessage, sendSqsMessage, awsProps } from '../../utils/aws';
 import { CodeInput } from '../../components/CodeInput/CodeInput';
 
-export function AwsMessageSender() {
+export function AwsSender() {
   const [sending, setSending] = React.useState(SendStatus.Idle)
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -48,7 +48,7 @@ export function AwsMessageSender() {
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="queue-inputs">
-        <TextInput label="Endpoint (optional)" name="localstackEndpoint" />
+        <TextInput label="LocalStack Endpoint" name="localstackEndpoint" />
         <TextInput label="Queue / Topic" name="resourceUrl" />
         <TextInput label="Region" name="region" />
         <TextInput label="Access Key ID" name="accessKey" />
