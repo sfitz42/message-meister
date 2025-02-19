@@ -10,8 +10,8 @@ type AwsConfig = {
 
 type MessageConfig = {
   resourceUrl: string
-  groupId: string
-  deduplicationId: string
+  groupId?: string | undefined
+  deduplicationId?: string | undefined
   message: string
 }
 
