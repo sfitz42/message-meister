@@ -11,6 +11,7 @@ type AwsConfig = {
 type MessageConfig = {
   resourceUrl: string
   groupId: string
+  deduplicationId: string
   message: string
 }
 
@@ -29,7 +30,8 @@ export async function sendSqsMessage(props: awsProps) {
   const command = new SendMessageCommand({
     QueueUrl: props.resourceUrl,
     MessageBody: props.message,
-    MessageGroupId: props.groupId
+    MessageGroupId: props.groupId,
+    MessageDeduplicationId: props.deduplicationId
   })
 
   try {
@@ -54,7 +56,8 @@ export async function sendSnsMessage(props: awsProps) {
   const command = new PublishCommand({
     TopicArn: props.resourceUrl,
     Message: props.message,
-    MessageGroupId: props.groupId
+    MessageGroupId: props.groupId,
+    MessageDeduplicationId: props.deduplicationId
   })
 
   try {

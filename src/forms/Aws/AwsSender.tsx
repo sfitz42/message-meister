@@ -24,7 +24,8 @@ export function AwsSender() {
       accessKeyId: formData.get("accessKey") as string,
       secretKey: formData.get("secretKey") as string,
       message: formData.get("message") as string,
-      groupId: "default"
+      groupId: "default-group",
+      deduplicationId: crypto.randomUUID()
     }
 
     try {
