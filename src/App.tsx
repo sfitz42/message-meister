@@ -3,6 +3,7 @@ import './App.css'
 import { Footer } from './components/Footer/Footer'
 import { AwsSender } from './forms/Aws/AwsSender'
 import { ServiceBusSender } from './forms/ServiceBus/ServiceBusSender'
+import { SelectList } from './components/SelectList/SelectList'
 
 enum MessageBroker {
   Aws = "AWS SQS/SNS",
@@ -23,10 +24,7 @@ export function App() {
       <h1>MessageMeister 📢📩📬</h1>
 
       <div className="card">
-        <select value={broker} onChange={handleProviderChange}>
-          <option value={MessageBroker.Aws}>{MessageBroker.Aws}</option>
-          <option value={MessageBroker.ServiceBus}>{MessageBroker.ServiceBus}</option>
-        </select>
+        <SelectList name="provider" options={Object.values(MessageBroker)} onChange={handleProviderChange} />
 
         {broker === MessageBroker.Aws && <AwsSender />}
         {broker === MessageBroker.ServiceBus && <ServiceBusSender />}
