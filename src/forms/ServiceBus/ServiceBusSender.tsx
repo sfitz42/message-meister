@@ -8,21 +8,26 @@ import { sendServiceBusMessage, ServiceBusProps } from '../../utils/service-bus'
 
 export function ServiceBusSender() {
   const [sending, setSending] = React.useState(SendStatus.Idle)
+  const [formData, setFormData] = React.useState<ServiceBusProps>({
+    connectionString: "",
+    address: "",
+    message: ""
+  })
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFormData({
+        ...formData,
+        [event.target.name]: event.target.value
+      })
+    }
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
     setSending(SendStatus.Sending)
 
-    const formData = new FormData(event.currentTarget)
-
-    const props: ServiceBusProps = {
-      connectionString: formData.get("serviceBusConnectionString") as string,
-      address: formData.get("serviceBusAddress") as string,
-      message: formData.get("message") as string
-    }
-
     try {
-      await sendServiceBusMessage(props)
+      await sendServiceBusMessage(formData)
       setSending(SendStatus.Sent)
     } catch (error) {
       console.error(error)
@@ -37,9 +42,9 @@ export function ServiceBusSender() {
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="queue-inputs">
-        <TextInput label="Connection String" name="serviceBusConnectionString" />
-        <TextInput label="Queue / Topic Address" name="serviceBusAddress" />
-        <CodeInput label="Message" name="message" />
+        <TextInput label="Connection String" name="serviceBusConnectionString" onChange={handleChange} />
+        <TextInput label="Queue / Topic Address" name="serviceBusAddress" onChange={handleChange} />
+        <CodeInput label="Message" name="message" onChange={handleChange} />
 
         <SendButton sending={sending} />
       </form>
