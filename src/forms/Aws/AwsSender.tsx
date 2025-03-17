@@ -49,7 +49,7 @@ export function AwsSender() {
         <TextInput label="Endpoint" name="endpoint" onChange={handleChange} />
         <TextInput label="Queue URL / Topic ARN" name="resourceUrl" onChange={handleChange} />
         <TextInput label="Region" name="region" onChange={handleChange} />
-        <TextInput label="Access Key ID" name="accessKey" onChange={handleChange} />
+        <TextInput label="Access Key ID" name="accessKeyId" onChange={handleChange} />
         <TextInput label="Secret Key" name="secretKey" onChange={handleChange} />
 
         {formData.resourceUrl?.endsWith(".fifo") && <TextInput label="Message Group ID" name="groupId" onChange={handleChange} />}

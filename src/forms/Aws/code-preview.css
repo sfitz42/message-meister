@@ -22,3 +22,7 @@
   min-height: 0;
   align-self: flex-start;
 }
+
+.cli-preview__command button svg {
+  vertical-align: middle;
+}

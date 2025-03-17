@@ -12,6 +12,7 @@ const specialCharacters = [
   { regex: /\r/g, replacement: "\\r" },
   { regex: /\t/g, replacement: "\\t" },
   { regex: /"/g, replacement: '\\"' },
+  { regex: /\s/g, replacement: "" }
 ]
 
 const escapeMessage = (message: string) => {
@@ -59,6 +60,14 @@ const generateCli = (props: awsProps, localstack: boolean) => {
 
   if (props.resourceUrl) {
     options.push(generateResourceOption(sqs, props.resourceUrl))
+  }
+
+  if (props.deduplicationId) {
+    options.push(`--message-deduplication-id ${props.deduplicationId}`)
+  }
+
+  if (props.groupId) {
+    options.push(`--message-group-id ${props.groupId}`)
   }
 
   if (props.message) {
