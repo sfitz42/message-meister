@@ -42,8 +42,8 @@ export function ServiceBusSender() {
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="queue-inputs">
-        <TextInput label="Connection String" name="serviceBusConnectionString" onChange={handleChange} />
-        <TextInput label="Queue / Topic Address" name="serviceBusAddress" onChange={handleChange} />
+        <TextInput label="Connection String" name="connectionString" onChange={handleChange} />
+        <TextInput label="Queue / Topic Address" name="address" onChange={handleChange} />
         <CodeInput label="Message" name="message" onChange={handleChange} />
 
         <SendButton sending={sending} />
