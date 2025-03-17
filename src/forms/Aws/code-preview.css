@@ -1,0 +1,28 @@
+.cli-preview__command {
+  display: flex;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  color: #fff;
+  background-color: #2d2d2d;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.cli-preview__command code {
+  display: block;
+  width: 85%;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.cli-preview__command button {
+  min-height: 0;
+  align-self: flex-start;
+}
+
+.cli-preview__command button svg {
+  vertical-align: middle;
+}

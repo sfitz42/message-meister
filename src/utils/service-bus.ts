@@ -17,11 +17,7 @@ export async function sendServiceBusMessage(props: ServiceBusProps) {
     webSocketOptions: undefined
   })
 
-  console.log("ServiceBusClient created")
-
   const sender = client.createSender(props.address)
-
-  console.dir(sender, { depth: null })
 
   try {
     await sender.sendMessages({
