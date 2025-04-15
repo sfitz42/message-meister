@@ -8,9 +8,9 @@ import { awsProps } from "../../utils/aws"
 import { CheckboxInput } from "../../components/CheckboxInput/CheckboxInput"
 
 const specialCharacters = [
-  { regex: /\n/g, replacement: "\\n" },
-  { regex: /\r/g, replacement: "\\r" },
-  { regex: /\t/g, replacement: "\\t" },
+  { regex: /\n/g, replacement: "" },
+  { regex: /\r/g, replacement: "" },
+  { regex: /\t/g, replacement: "" },
   { regex: /"/g, replacement: '\\"' },
   { regex: /\s/g, replacement: "" }
 ]
